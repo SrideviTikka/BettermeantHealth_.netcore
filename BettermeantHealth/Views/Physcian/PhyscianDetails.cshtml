@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewData["Title"] = "PhyscianDetails";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+@using BettermeantHealth.DataContract
+
+@model List<DC_UserLogins>
+
+<form id="frmAddUpdateUserDetails" action="~/User/UserLogin_Update" method="post">
+    <input type="hidden" id="hdnUserId" name="hdnUserId" value="@Model[0].UserId" />
+    <div class="col-md-6 column-border">
+        <div class="form-group col-md-12" style="padding-top: 20px;">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">First Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtFirstName" id="txtFirstName" tabindex="1" value="@Model[0].FirstName" class="form-control" placeholder="Enter first name" required data-required-msg="Please enter first name" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Middle Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtMiddleName" id="txtMiddleName" tabindex="2" value="@Model[0].MiddleName" class="form-control" placeholder="Enter middle name" required data-required-msg="Please enter middle name" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Last Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtLastName" id="txtLastName" tabindex="3" value="@Model[0].LastName" class="form-control" placeholder="Enter last name" required data-required-msg="Please enter last name" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Email Address:</label>
+            <div class="col-sm-7">
+                <input type="email" name="txtEmailAddress" id="txtEmailAddress" value="@Model[0].EmailAddress" tabindex="4" class="form-control" placeholder="Enter email address" required data-required-msg="Please enter email address" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label col-sm-4" style="padding-top: 6px;">Address:</label>
+            <div class="col-sm-7">
+                <textarea name="txtAddress" id="txtAddress" tabindex="5" value="@Model[0].Address" class="form-control" required data-required-msg="Please enter address" placeholder="Enter address"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+
+        <div class="form-group col-md-12" style="padding-top: 20px;">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Phone Number:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtPhoneNumber" id="txtPhoneNumber" value="@Model[0].PhoneNumber" tabindex="6" class="form-control" pattern="[0-9]+" placeholder="Enter phone number" required data-required-msg="Please enter contract number" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">City:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtCity" id="txtCity" value="@Model[0].City" tabindex="7" class="form-control" placeholder="Enter packaging" required data-required-msg="Please enter packaging" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">State:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtState" id="txtState" value="@Model[0].State" tabindex="8" class="form-control" placeholder="Enter unit cost" required data-required-msg="Please enter unit cost" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Zip Code:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtZipCode" id="txtZipCode" value="@Model[0].ZipCode" tabindex="9" class="form-control" pattern="[0-9]+" placeholder="Enter Zip code" required data-required-msg="Please enter Zip code" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">NPI Id:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtNPIId" id="txtNPIId" value="@Model[0].NPI_Id" tabindex="10" class="form-control" pattern="[0-9]+" placeholder="Enter NPI Id" required data-required-msg="Please enter NPI Id" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-12 text-center" style="margin-top: 20px !important;">
+            <input type="submit" name="btnSave" id="btnSave" value="Update" class="btn btn-primary btn-color" />
+        </div>
+    </div>
+</form>
+<div class="panel panel-default m-t-20" id="divPhyscianInsurances">
+    <div class="panel-heading col-md-12 col-sm-12 panel-background body-margin">
+        <h3 class="panel-title col-md-10 col-sm-10 physician_search2 text-center" style="margin-left: 90px;">Insurances</h3>
+        @*<button type="button" class="btn btn-info btn-sm pull-right btn-color" data-toggle="modal" data-target="#addpatientinsurancemodal" id="btnaddpatientinsurance" >add insurance</button>*@
+    </div>
+    @*<div class="panel-body col-md-12" style="float: left; width: 100%; background-color: white;">
+            <div id="divGrid"></div>
+        </div>*@
+    <div id="divGrid" class="col-md-12"></div>
+</div>
+<script>
+
+    var CheckedInsurancecarrier = [];
+      $(document).ready(function () {
+        LoginUserId=@Model[0].UserId;
+        data = UserLogins_Get(@Model[0].UserId);
+        $("#txtAddress").val(data[0].Address);
+        GetDynamicInsurance();
+      });
+
+    function UserLogins_Get(UserId) {
+        var result = null;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: '@Url.Action("UserLogins_Get", "Account")',
+            data: { UserId: UserId},
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+
+    function InsuranceCarrier_Physcian_Insurance_Get(InsuranceCarrierId,PhyscianInsuranceId,UserId) {
+        var result = null;
+        $.ajax({
+          type: "GET",
+          async: false,
+          url: '@Url.Action("InsuranceCarrier_Physcian_Insurance_Get", "Physcian")',
+            data: { InsuranceCarrierId: InsuranceCarrierId,PhyscianInsuranceId:PhyscianInsuranceId,UserId:UserId },
+          success: function (data) {
+              result = data;
+            }
+        });
+        return result;
+    }
+
+    function PhyscianInsurance_AddUpdate(data) {
+        console.log
+        debugger;
+        var result = null;
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: '@Url.Action("PhyscianInsurance_AddUpdate", "Physcian")',
+            data: data,
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+
+    function Get_InsuranceCarrier(InsuranceCarrierId) {
+        var result = null;
+        $.ajax({
+          type: "GET",
+          async: false,
+          url: '@Url.Action("Get_InsuranceCarrier", "InsuranceCarrier")',
+            data: { InsuranceCarrierId: InsuranceCarrierId },
+          success: function (data) {
+              result = data;
+            }
+        });
+        return result;
+    }
+
+    function PhyscianInsurance_Delete(PhyscianInsuranceId) {
+        var result = null;
+        $.ajax({
+          type: "POST",
+          async: false,
+          url: '@Url.Action("PhyscianInsurance_Delete", "Physcian")',
+            data: { PhyscianInsuranceId: PhyscianInsuranceId },
+          success: function (data) {
+              result = data;
+            }
+        });
+        return result;
+    }
+    function Physcian_Insurance_Get(PhyscianInsuranceId,UserId) {
+        var result = null;
+        $.ajax({
+          type: "GET",
+          async: false,
+          url: '@Url.Action("Physcian_Insurance_Get", "Physcian")',
+            data: { PhyscianInsuranceId: PhyscianInsuranceId,UserId:UserId },
+          success: function (data) {
+              result = data;
+            }
+        });
+        return result;
+    }
+
+    function GetDynamicInsurance() {
+        debugger;
+        var data = InsuranceCarrier_Physcian_Insurance_Get(0, 0,@Model[0].UserId);     
+       
+        var totalHtml = "";
+        var length = (data != null && data.length > 0) ? data.length : 0;
+
+            for (var i = 0; i < length ; i++) {
+
+                if (i < length) {
+                        var html = '<div class="form-group col-md-6 col-sm-6" style="padding-top: 0px;">'
+                            + '<div class="col-sm-offset-2 col-sm-1">'
+                            + '<input type="checkbox" name="CheckInsurance_' + data[i].InsuranceCarrierId + '" id="CheckInsurance_' + data[i].InsuranceCarrierId + '" class="clscheckbox" onclick="onCheckedChange(this,' + data[i].InsuranceCarrierId + ','+data[i].PhyscianInsuranceId+')" />'
+                            + '</div>'
+                            + '<label class="control-label  col-sm-2" style="padding-top: 6px;">' + data[i].InsuranceName + '</label>'
+                            +'</div>';
+                }
+                totalHtml += html;
+            }
+        $("#divGrid").html(totalHtml);
+        dataBound();
+
+    }
+
+    function dataBound() {
+         var Insurancedata = [];
+        Insurancedata = Physcian_Insurance_Get(0,@Model[0].UserId);
+
+        CheckedInsurancecarrier = [];
+        $.each(Insurancedata, function (index,item) {
+            CheckedInsurancecarrier.push(item.InsuranceCarrierId); 
+      }); 
+        if (CheckedInsurancecarrier.length != 0) {
+            for (i = 0; i < CheckedInsurancecarrier.length; i++) {
+                $("#CheckInsurance_" + CheckedInsurancecarrier[i]).prop("checked", true);
+            }
+        }
+    }
+
+    function onCheckedChange(e, vInsuranceId,vPatientInsuranceId) {
+        debugger;
+        if (e.checked == true && vInsuranceId != "") {
+            Splice(vInsuranceId);
+            CheckedInsurancecarrier.push(vInsuranceId);
+            dc_physcianInsuarnce = {
+                PhyscianInsuranceId: 0,
+                InsuranceCarrierId: vInsuranceId
+            };
+            PhyscianInsurance_AddUpdate(dc_physcianInsuarnce);
+            GetDynamicInsurance();
+        }
+        if (e.checked == false && vInsuranceId != "") {
+            Splice(vInsuranceId);
+            PhyscianInsurance_Delete(vPatientInsuranceId);
+            GetDynamicInsurance();
+        }
+    }
+    function Splice(Value) {
+        debugger;
+            for (var j = 0; j < CheckedInsurancecarrier.length; j++) {
+                if (Value == CheckedInsurancecarrier[j]) {
+                    var index = CheckedInsurancecarrier.indexOf(CheckedInsurancecarrier[j]);
+                    CheckedInsurancecarrier.splice(index, 1);
+                }
+            }
+        }
+
+</script>

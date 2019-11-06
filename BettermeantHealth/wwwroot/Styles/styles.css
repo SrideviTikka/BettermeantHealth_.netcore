@@ -1,0 +1,568 @@
+﻿@charset "utf-8";
+/* ==========================================================================
+   CSS Reset
+   ========================================================================== */
+/*
+* html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
+* Richard Clark (http://richclarkdesign.com)
+* http://cssreset.com
+*/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent
+}
+
+body {
+    line-height: 1
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block
+}
+
+    nav ul {
+        list-style: none
+    }
+
+blockquote, q {
+    quotes: none
+}
+    /*blockquote:before,blockquote:after*/
+
+    , q:before, q:after {
+        content: none
+    }
+
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent
+}
+
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none
+}
+
+mark {
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold
+}
+
+del {
+    text-decoration: line-through
+}
+
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0
+}
+
+input, select {
+    vertical-align: middle
+}
+
+*, /**:after,*:before {box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;-o-box-sizing: border-box;}*/
+/* ==========================================================================
+   Common CSS
+   ========================================================================== */
+body {
+    font: normal 14px/20px Arial, Helvetica, sans-serif;
+    color: #4b4b4b;
+    background-color: #cce1da;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+
+button {
+    overflow: visible;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    color: #232323;
+}
+
+    a:hover, a:focus {
+        text-decoration: underline;
+        color: #6EB8A0;
+    }
+
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.float-left {
+    float: left;
+}
+
+/* ==========================================================================
+   Setting up the fonts
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+#header {
+    float: left;
+    width: 100%;
+    clear: both;
+}
+
+.logo {
+    margin-top: 20px;
+}
+
+    .logo img {
+        float: left;
+    }
+
+.logo_text {
+    float: left;
+    margin: 15px 13px;
+    font-family: Tahoma;
+    font-size: 28px;
+    color: #7acaaf;
+    font-weight: 700;
+}
+
+.bg-light {
+    background-color: transparent !important;
+    float: right;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(122, 202, 175);
+    font-size: 18px;
+}
+
+/* ==========================================================================
+   Main
+   ========================================================================== */
+
+#main {
+    float: left;
+    width: 100%;
+    clear: both;
+}
+
+.physician_search {
+    font-size: 28px;
+    font-weight: 800;
+    color: black;
+    font-family: Tahoma;
+}
+
+.form-inline .form-control {
+    width: 100%;
+    padding: 27px 20px;
+}
+
+.form-inline {
+    position: relative;
+}
+/*.form-inline:after{
+   content: '';
+   position: absolute;
+   top: 0;
+   right: 0;
+   background-image: url("../images/search.png");
+}*/
+.form-inline {
+    margin-top: 30px !important;
+}
+
+.search_bar {
+    position: relative;
+}
+
+.search {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5.4%;
+}
+
+.images_sec {
+    margin-top: 7%;
+    padding: 0;
+    float: left;
+}
+
+    .images_sec span {
+        display: inherit;
+        text-align: center;
+        font-size: 18px;
+        padding: 5px 0;
+        font-family: Tahoma;
+    }
+
+    .images_sec img {
+        width: 100%;
+    }
+
+.input-group {
+    padding-left: 11px;
+    padding-top: 10px;
+}
+
+    .input-group label {
+        padding: 0;
+        font-family: Tahoma;
+        font-size: 16px;
+        color: black;
+    }
+
+.submit_btn {
+    margin-top: 20px;
+    margin-left: 11px;
+    font-size: 18px;
+    font-family: Tahoma;
+    text-transform: uppercase;
+    padding: 10px 20px;
+}
+
+.newpatient {
+    text-align: center;
+    margin-top: 15%;
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+    font-family: Tahoma;
+}
+
+    .newpatient a {
+        color: #0465ce;
+        text-decoration: none;
+        background-color: #ccc;
+        padding: 5px 10px;
+        display: inline-block;
+    }
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 20px;
+}
+
+/* Clear floats after the columns */
+/*.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}*/
+
+.div-with-bg {
+    background: color url('_ui/images/message.png') others;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+/* ==========================================================================
+   popup
+   ========================================================================== */
+
+#popup_this {
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    margin-top: -50px;
+    margin-left: -100px;
+    position: fixed;
+    background: #fff;
+    padding: 30px;
+}
+
+.b-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    color: #fff;
+    background: #ff0000;
+    padding: 5px 10px;
+}
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+
+/* The Modal (background) */
+
+
+/* Modal Content */
+/*.modal-content {
+    background-color: #F2F2F2;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 45%;
+    font-family: Tahoma;
+    font-size: 24px;
+}*/
+
+/* The Close Button */
+/*.close {
+    color: #6EB8A0;
+    float: right;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: right;
+}*/
+
+.close:hover,
+.close:focus {
+    color: #82C1AD;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+#footer {
+}
+
+
+/* ==========================================================================
+   Hamburger Menu
+   ========================================================================== */
+
+#menuToggle {
+    display: block;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+    #menuToggle input {
+        display: block;
+        width: 40px;
+        height: 32px;
+        position: absolute;
+        top: -7px;
+        left: -5px;
+        cursor: pointer;
+        opacity: 0; /* hide this */
+        z-index: 2; /* and place it over the hamburger */
+        -webkit-touch-callout: none;
+    }
+
+    /*
+ * Just a quick hamburger
+ */
+    #menuToggle span {
+        display: block;
+        width: 33px;
+        height: 4px;
+        margin-bottom: 5px;
+        position: relative;
+        background: #232323;
+        border-radius: 3px;
+        z-index: 1;
+        transform-origin: 4px 0px;
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+    }
+
+        #menuToggle span:first-child {
+            transform-origin: 0% 0%;
+        }
+
+        #menuToggle span:nth-last-child(2) {
+            transform-origin: 0% 100%;
+        }
+
+    /* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+    #menuToggle input:checked ~ span {
+        opacity: 1;
+        transform: rotate(45deg) translate(-2px, -1px);
+        background: #232323;
+    }
+
+        /*
+ * But let's hide the middle one.
+ */
+        #menuToggle input:checked ~ span:nth-last-child(3) {
+            opacity: 0;
+            transform: rotate(0deg) scale(0.2, 0.2);
+        }
+
+        /*
+ * Ohyeah and the last one should go the other direction
+ */
+        #menuToggle input:checked ~ span:nth-last-child(2) {
+            transform: rotate(-45deg) translate(0, -1px);
+        }
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
+    position: absolute;
+    width: 300px;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+    background: #ededed;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+    #menu li {
+        padding: 10px 0;
+        font-size: 22px;
+    }
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul {
+    transform: none;
+}
+
+li.nav-item {
+    padding: 10px;
+}
+
+.body-background {
+    background-color: #cce1da;
+}
+
+.h2-margin {
+    margin-left: 353px
+}
+
+.body-margin-top {
+    margin-top: 20px;
+}
+
+.layout-heading {
+    padding: 15px;
+}
+
+.body-margin {
+    margin-top: 60px;
+}
+/*.button-background {
+    background-color: #7acaaf !important;
+}*/
+.physician_search2 {
+    font-size: 20px !important;
+}
+
+.panel-background {
+    background: none !important;
+    margin-bottom: 40px;
+}
+
+.image-width {
+    width: 60px;
+}
+
+.column-border {
+    border-right: 1px solid;
+}
+
+.sign-up {
+    border-radius: 40px;
+    padding: 5px 10px 15px 10px !important;
+}
+
+/*hover starts
+nav.stroke ul li a,
+nav.fill ul li a {
+    position: relative;
+}
+
+    nav.stroke ul li a:after,
+    nav.fill ul li a:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0%;
+        content: '.';
+        color: transparent;
+        background: #aaa;
+        height: 1px;
+    }*/
+
+nav.stroke ul li a:hover:after {
+    width: 100%;
+}

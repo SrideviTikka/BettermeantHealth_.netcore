@@ -1,0 +1,352 @@
+﻿@{
+    ViewBag.Title = "UserDetails";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+@using BettermeantHealth.DataContract
+
+@model List<DC_UserLogins>
+
+
+<form id="frmAddUpdateUserDetails" action="~/User/UserLogin_Update" method="post">
+    <input type="hidden" id="hdnUserId" name="hdnUserId" value="@Model[0].UserId" />
+    <div class="col-md-6 column-border">
+        <div class="form-group col-md-12" style="padding-top: 20px;">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">First Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtFirstName" id="txtFirstName" tabindex="1" value="@Model[0].FirstName" class="form-control" placeholder="Enter first name" required data-required-msg="Please enter first name" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Middle Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtMiddleName" id="txtMiddleName" tabindex="2" value="@Model[0].MiddleName" class="form-control" placeholder="Enter middle name" required data-required-msg="Please enter middle name" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Last Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtLastName" id="txtLastName" tabindex="3" value="@Model[0].LastName" class="form-control" placeholder="Enter last name" required data-required-msg="Please enter last name" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Email Address:</label>
+            <div class="col-sm-7">
+                <input type="email" name="txtEmailAddress" id="txtEmailAddress" value="@Model[0].EmailAddress" tabindex="4" class="form-control" placeholder="Enter email address" required data-required-msg="Please enter email address" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label col-sm-4" style="padding-top: 6px;">Address:</label>
+            <div class="col-sm-7">
+                <textarea name="txtAddress" id="txtAddress" tabindex="5" value="@Model[0].Address" class="form-control" required data-required-msg="Please enter address" placeholder="Enter address"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+
+        <div class="form-group col-md-12" style="padding-top: 20px;">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Phone Number:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtPhoneNumber" id="txtPhoneNumber" value="@Model[0].PhoneNumber" tabindex="6" class="form-control" pattern="[0-9]+" placeholder="Enter phone number" required data-required-msg="Please enter phone number" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">City:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtCity" id="txtCity" value="@Model[0].City" tabindex="7" class="form-control" placeholder="Enter city" required data-required-msg="Please enter city" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">State:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtState" id="txtState" value="@Model[0].State" tabindex="8" class="form-control" placeholder="Enter state" required data-required-msg="Please enter state" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Zip Code:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtZipCode" id="txtZipCode" value="@Model[0].ZipCode" tabindex="9" class="form-control" pattern="[0-9]+" placeholder="Enter Zip code" required data-required-msg="Please enter zip code" data-pattern-msg="Please Enter Valid Input" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-12 text-center" style="margin-top: 20px !important;">
+            <input type="submit" name="btnSave" id="btnSave" value="Update" class="btn btn-primary btn-color" />
+        </div>
+    </div>
+</form>
+<div class="panel panel-default m-t-20" id="divPatientInsurances">
+    <div class="panel-heading col-md-12 col-sm-12 panel-background body-margin">
+        <h3 class="panel-title col-md-10 col-sm-10 physician_search2 text-center" style="margin-left: 90px;">Insurances</h3>
+        @*<button type="button" class="btn btn-info btn-sm pull-right btn-color" data-toggle="modal" data-target="#addpatientinsurancemodal" id="btnaddpatientinsurance" >add insurance</button>*@
+    </div>
+    @*<div class="panel-body col-md-12" style="float: left; width: 100%; background-color: white;">
+            <div id="divGrid"></div>
+        </div>*@
+    <div id="divGrid"></div>
+</div>
+
+<div id="addPatientInsuranceModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <form id="frmInsuranceDetails" action="~/User/PatientInsurance_AddUpdate" method="post">
+            <input type="hidden" id="hdnUserId" name="hdnUserId" value="@Model[0].UserId" />
+            <input type="hidden" id="hdnPatientInsuranceId" name="hdnPatientInsuranceId" />
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header col-md-12">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add/Edit Insurances Details</h4>
+                </div>
+                <div class="modal-body resp-panel" style="padding: 0;">
+                    <div class="form-group col-md-12" style="padding-top: 20px;">
+                        <label class="control-label  col-sm-4" style="padding-top: 6px;">Insurance Carrier:</label>
+                        <div class="col-sm-7">
+                            <select name="ddlInsuranceCarrier" id="ddlInsuranceCarrier" tabindex="1" required data-required-msg="Please select insurance carrier" class="full-width"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" style="padding-top: 6px;">
+                        <label class="control-label  col-sm-4" style="padding-top: 6px;">Insurance Plan:</label>
+                        <div class="col-sm-7">
+                            <select name="ddlInsurancePlan" id="ddlInsurancePlan" tabindex="2" required data-required-msg="Please select insurance plan" class="full-width"></select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="control-label  col-sm-4" style="padding-top: 6px;">Member Id:</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="txtInsuranceMemberId" id="txtInsuranceMemberId" tabindex="3" class="form-control" placeholder="Enter unit cost" required data-required-msg="Please enter unit cost" data-pattern-msg="Please Enter Valid Input" />
+                        </div>
+                    </div>
+                    <div class="form-group  col-sm-12">
+                        <label class="control-label  col-sm-4" style="padding: 6px;">Expiry Date:</label>
+                        <div class="col-sm-4">
+                            <input type="date" name="txtExpiryDate" id="txtExpiryDate" class="form-control" onkeydown="return false" autocomplete="off" required data-required-msg="Please select date" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <input type="submit" name="btnSave" id="btnSave" value="Save" class="col-md-offset-1 btn btn-primary btn-color" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+
+    var LoginUserId = 0;
+    $(document).ready(function () {
+        debugger;
+        LoginUserId=@Model[0].UserId;
+        data = UserLogins_Get(@Model[0].UserId);
+        $("#txtAddress").val(data[0].Address);
+        GetDynamicInsurance();
+    });
+
+    var UserdetailsValidator = $("#frmAddUpdateUserDetails").kendoValidator().data("kendoValidator");
+   var InsuranceDetailsValidator= $("#frmInsuranceDetails").kendoValidator().data("kendoValidator");
+
+    function UserLogins_Get(UserId) {
+        var result = null;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: '@Url.Action("UserLogins_Get", "Account")',
+            data: { UserId: UserId},
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+    function PatientInsurance_Get(UserId, PatientInsuranceId) {
+        var result = null;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: '@Url.Action("PatientInsurance_Get", "User")',
+            data: { UserId: UserId, PatientInsuranceId: PatientInsuranceId},
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+    $("#ddlInsuranceCarrier").kendoDropDownList();
+    $("#ddlInsurancePlan").kendoDropDownList();
+    var ddlInsuranceCarrierId =null;
+    function Get_InsuranceCarrier(InsuranceCarrierId) {
+        var result = null;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: '@Url.Action("Get_InsuranceCarrier", "InsuranceCarrier")',
+            data: { InsuranceCarrierId: InsuranceCarrierId},
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+
+    function InsurancePlan_GetByInsuranceCarrierId(InsuranceCarrierId) {
+        debugger;
+        var result = null;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: '@Url.Action("InsurancePlan_GetByInsuranceCarrierId", "InsurancePlan")',
+            data: { InsuranceCarrierId: InsuranceCarrierId},
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+
+    $("#ddlInsuranceCarrier").kendoDropDownList({
+        dataSource: Get_InsuranceCarrier(0),
+        dataValueField: "InsuranceCarrierId",
+        dataTextField: "InsuranceName",
+        index: 0,
+        optionLabel: "--Select InsuranceCarrier--"
+    });
+    $("#ddlInsuranceCarrier").change(function () {
+        debugger;
+        ddlInsuranceCarrierId = $(this).data("kendoDropDownList").value();
+        $("#ddlInsurancePlan").kendoDropDownList({
+            dataSource: [],
+            dataValueField: "InsurancePlanId",
+            dataTextField: "InsurancePlanName",
+            index: 0,
+            optionLabel: "--Select InsurancePlan--"
+
+        });
+        var InsurancePlanData = InsurancePlan_GetByInsuranceCarrierId(ddlInsuranceCarrierId);
+        $("#ddlInsurancePlan").data("kendoDropDownList").setDataSource(InsurancePlanData);
+    });
+    $('#txtExpiryDate').kendoDatePicker({
+        min: new Date(),
+        format: "dd/MM/yyyy"
+    });
+
+   
+
+    function PatientInsurance_Edit(PatientInsuranceId) {
+        var result = null;
+        var data = PatientInsurance_Get("@Model[0].UserId", PatientInsuranceId);
+        if (data != null && data.length > 0) {
+            $("#addPatientInsuranceModal").modal('show');
+            $("#ddlInsuranceCarrier").data("kendoDropDownList").value(data[0].InsuranceCarrierId);
+            $("#ddlInsuranceCarrier").trigger('change');
+            $("#ddlInsurancePlan").data("kendoDropDownList").value(data[0].InsurancePlanId);
+            $("#txtInsuranceMemberId").val(data[0].InsuranceMemberId);
+            $("#txtExpiryDate").val(kendo.toString(kendo.parseDate(data[0].ExpiryDate), 'dd/MM/yyyy'));
+            $("#hdnPatientInsuranceId").val(data[0].PatientInsuranceId);
+        }
+    }
+
+    $("#btnAddPatientInsurance").click(function () {
+        $("#hdnPatientInsuranceId").val("");
+        $("#ddlInsuranceCarrier").data("kendoDropDownList").value("");
+        $("#ddlInsurancePlan").data("kendoDropDownList").value("");
+        $("#txtInsuranceMemberId").val("");
+        $("#txtExpiryDate").val("");
+    });
+
+    function PatientInsurance_Add() {
+        $("#addPatientInsuranceModal").modal('show');
+        $("#hdnPatientInsuranceId").val("");
+        $("#ddlInsuranceCarrier").data("kendoDropDownList").value("");
+        $("#ddlInsurancePlan").data("kendoDropDownList").value("");
+        $("#txtInsuranceMemberId").val("");
+        $("#txtExpiryDate").val("");
+    }
+
+    function PatientInsurance_Delete(vPatientInsuranceId) {
+        if (vPatientInsuranceId != '') {
+            if (confirm("Are you sure you want to delete the Insurance ?")) {
+                var URL = "/User/PatientInsurance_Delete?PatientInsuranceId=" + vPatientInsuranceId;
+                $.post(URL, function (strMessage) {
+	if (strMessage.Message != "") {
+	    if (strMessage.Message.toLowerCase().indexOf("success") != -1) {
+	        $('#spanSuccesMessage').text(strMessage);
+	        $("#divSuccesMessage").show();
+	        $('#divSuccesMessage').delay(3000).fadeOut('slow', function () { $('#spanSuccesMessage').text(""); });
+	    }
+	    else if (strMessage.Message.toLowerCase().indexOf("unable") != -1) {
+	        $('#spanErrorMessage').text(strMessage);
+	        $("#divErrorMessage").show();
+	        $('#divErrorMessage').delay(3000).fadeOut('slow', function () { $('#spanErrorMessage').text(""); });
+	    }
+	    GetDynamicInsurance();
+	}
+	else {
+	    $('#spanErrorMessage').text('Unable to delete, Please try after sometime');
+	    $("#divErrorMessage").show();
+	    $('#divErrorMessage').delay(3000).fadeOut('slow', function () { $('#spanErrorMessage').text(""); });
+	}
+                })
+            }
+        }
+    }
+    function GetDynamicInsurance() {
+        var data = PatientInsurance_Get(LoginUserId, 0);
+        var totalHtml = "";
+       // if (data != null && data.length > 0)
+    {
+            var length = (data != null && data.length > 0) ? data.length : 0;
+
+            for (var i = 0; i < length + 1; i++) {
+
+                if (i < length) {
+	var No = i+1;
+
+                    var html = '<div class="form-group col-md-6 col-sm-6 column-border" id="boxShadow_Red" style="padding-top: 0px;">'
+	    + '<label class="control-label  col-sm-2" style="padding-top: 6px;"> Inurance ' + No + '</label>'
+	    + '<div class="col-sm-2">'
+        + '<button  type="button" class="btn btn-default button-background" name="Insurance_' + i + '" id="Insurance_' + i + '"  onClick="PatientInsurance_Edit(' + data[i].PatientInsuranceId + ')"><img class="image-width" src="/Images/insurence.png"></img></button>'
+	    + '</div>'
+	    + '<div class="col-sm-3">'
+	    + '<label >Insurance Name:</label>'
+	    + '<label class="control-label">' + data[i].InsuranceName + '</label>'
+	    + '</div>'
+	    + '<div class="col-sm-3">'
+	    + '<label >Plan Name:</label>'
+	    + '<label class="control-label">' + data[i].InsurancePlanName + '</label>'
+	    + '</div>'
+	    + '<div class="col-sm-1">'
+	    + '<button onClick="PatientInsurance_Delete(' + data[i].PatientInsuranceId + ')"><i class="fa fa-trash" aria-hidden="true"></i></button>'
+	    + '</div>'
+	    + '</div>';
+                }
+                else {
+	var html = '<div class="form-group col-md-6 col-sm-6" id="boxShadow_Green"  style="padding-top: 0px;">'
+	    + '<label class="control-label  col-sm-2" style="padding-top: 6px;">Inurance New</label>'
+	    + '<div class="col-sm-9">'
+
+                        + '<button type="button" onClick="PatientInsurance_Add(' + i + ')" class="btn btn-default button-background" name="Insurance_New_' + i + '" id="Insurance_New_' + i + '" ><i class="fa fa-plus fa-5x" aria-hidden="true" style="background-color: #80ccb2;"></i></button>'
+
+	    + '</div>'
+	    + '</div>';
+                }
+                totalHtml += html;
+            }
+            $("#divGrid").html(totalHtml);
+        }
+    }
+
+</script>
+<style>
+    .button-background {
+        background-color: #7acaaf !important;
+    }
+</style>
+
+
+

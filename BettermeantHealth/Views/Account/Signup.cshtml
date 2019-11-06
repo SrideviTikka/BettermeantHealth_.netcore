@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "Signup";
+     Layout = "~/Views/Shared/_CommonLayout.cshtml";
+}
+
+<h2 class="physician_search h2-margin ">Sign-up</h2>
+<br />
+<br />
+
+<form id="frmManufacturer" action="~/Account/Signup" method="post">
+    <input type="hidden" id="hdnUserId" name="hdnUserId" />
+    <!-- Modal content-->
+    <div class="modal-body" style="padding: 0;">
+        <div class="form-group col-md-12" style="padding-top: 20px;">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">First Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtFirstName" class="form-control" id="txtFirstName" pattern="[^<>]+" required data-required-msg="Please enter first name" validationmessage="Please enter valid input" tabindex="1" placeholder="" style="width: 250px;" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-12" style="padding-top: 0px;">
+            <label class="control-label  col-sm-4" style="padding-top: 6px;">Last Name:</label>
+            <div class="col-sm-7">
+                <input type="text" name="txtLastName" class="form-control" id="txtLastName" pattern="[^<>]+" required data-required-msg="Please enter last name" validationmessage="Please enter valid input" tabindex="2" placeholder="" style="width: 250px;" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 user-padding col-sm-12" style="">
+            <label class="control-label  col-sm-4">Email Address:</label>
+            <div class="col-sm-7">
+                <input type="email" name="txtMail" id="txtMail" pattern="[^<>]+" class="form-control" placeholder="" required data-required-msg="Please enter email id" validationmessage="Please enter valid email id" tabindex="3" style="width: 250px" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12" id="divRole">
+            <label class="control-label  col-sm-4">Role Name:</label>
+            <div class="col-sm-7">
+                <select id="ddlRoles" name="ddlRoles" required data-required-msg="Please select role" tabindex="4" style="width: 250px"></select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <div class="col-md-12 text-center">
+                <input type="submit" name="btnSave" id="btnSave" value="Save" class="col-md-offset-1 btn btn-primary btn-color" tabindex="4" style="margin-left: -300px;" />
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+<script>
+     function Roles_Get() {
+        debugger;
+        var result = [];
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: '@Url.Action("RoleName_Get", "Account")',
+            success: function (data) {
+                result = data;
+            }
+        });
+        return result;
+    }
+
+    $(document).ready(function () {
+        $("#ddlRoles").kendoDropDownList();
+        $("#frmManufacturer").kendoValidator().data("kendoValidator");
+
+          $("#ddlRoles").kendoDropDownList({
+            dataSource: Roles_Get(),
+            dataValueField: "RoleId",
+            dataTextField: "RoleName",
+            index: 0,
+            optionLabel: "--Select Role--"
+        });
+    });
+
+
+</script>
+

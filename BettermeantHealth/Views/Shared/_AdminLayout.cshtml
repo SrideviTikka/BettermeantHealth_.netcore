@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewData["Title"] = "_AdminLayout";
+}
+@using BettermeantHealth.DataContract;
+@{
+    DC_UserLogins dC_UserLogins = DC_StaticConstants.Session_UserLogin;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BettermeantHealth</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/Styles/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.common-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/themes/base/jquery-ui.css" rel="stylesheet" />
+    @*<link href="~/lib/fontawesome-free-5.11.2-web/css/all.css" rel="stylesheet" />*@
+    @*<link href="~/lib/fontawesome-free-5.11.2-web/css/fontawesome.css" rel="stylesheet" />*@
+    <link href="~/lib/Rat/css/animate.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/components.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/helper.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/icons.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/rat.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/switcher.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-tagsinput.css" rel="stylesheet" />
+
+</head>
+<body>
+    <nav role="navigation">
+        <div id="menuToggle">
+            <input type="checkbox">
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="patient_dashboard.html"><li style="font-size: 17px;">Dashboard</li></a>
+                <a href="/InsuranceCarrier/InsuranceCarrier"><li style="font-size: 17px;">Carrier Management</li></a>
+                <a href="/InsurancePlan/InsurancePlan"><li style="font-size: 17px;"> Health Plan Management</li></a>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <header id="header">
+            <div class="container">
+                <div class="container">
+                    <div class="col-md-12">
+                        <figure class="logo">
+                            <figcaption>
+                                <img src="~/Images/logo.png" alt="logo">
+                            </figcaption>
+                            <h1 class="logo_text layout-heading">Bettermeant Health</h1>
+                        </figure>
+                    </div>
+
+                    <div class="col-md-12 float-left">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>*@
+                            <div class="collapse navbar-collapse" id="navbarNav" style="margin-top: -50px;">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/Home/Index">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <label style="margin-left: 10px; margin-top: 15px;"><strong>@dC_UserLogins.FirstName</strong></label>
+                                    </li>
+                                    <li class="nav-item">
+                                        <img src="/Images/profile.png" style="margin-left: 30px;" width="50" height="50">
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                        <div class="alert alert-remove" id="idErrorMessage" style="top: 3px; position: fixed; z-index: 9999; left: 41%; display: none"></div>
+                        <div class="alert alert-ok" id="idSuccesMessage" style="top: 3px; position: fixed; z-index: 9999; left: 41%; display: none"></div>
+                        @{
+                            <div class="alert alert-remove" id="divErrorMessage" style="top: 3px; position: fixed; z-index: 9999; left: 41%; display: none; background: #e33915; color: #fff; min-width: 20%;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-1x"></i>
+                                    <i class="fa fa-times fa-stack-1x fa-inverse" style="color: #e33915;"></i>
+                                </span>
+                                <span id="spanErrorMessage">
+                                    @if (@TempData["errorMessage"] != null)
+                                    {
+                                        @TempData["errorMessage"]
+                                    }
+                                </span>
+                            </div>
+
+                            <div class="alert alert-ok" id="divSuccesMessage" style="top: 3px; position: fixed; z-index: 9999; left: 41%; display: none; background: #008000; color: #fff; min-width: 20%;">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-1x"></i>
+                                    <i class="fa fa-check fa-stack-1x fa-inverse" style="color: #008000;"></i>
+                                </span>
+                                <span id="spanSuccesMessage">
+                                    @if (@TempData["successMessage"] != null)
+                                    {
+                                        @TempData["successMessage"]
+                                    }
+                                </span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /header -->
+
+    </div>
+    <div class="container">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery-migrate-1.2.1.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="~/lib/project/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/Kendo/js/kendo.all.min.js"></script>
+        <script src="~/lib/Kendo/js/jszip.min.js"></script>
+        <script src="~/lib/Rat/js/FileSaver.js"></script>
+        <script src="~/lib/Rat/js/Html2Canvas.js"></script>
+        <script src="~/lib/Rat/js/jquery.wordexport.js"></script>
+        <script src="~/lib/Rat/js/Rat.js"></script>
+        <script src="~/lib/fontawesome-free-5.11.2-web/js/all.js"></script>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script>
+
+    $(document).ready(function () { initMenu(); });
+
+    $("img.expandImage").click(function () {
+        $(".activeImage").removeClass("activeImage");
+        $(this).addClass("activeImage");
+        var src = $(this).attr("src");
+        $("#imgToExpand").attr("src", src);
+        $("#modalImageExpand").modal("show");
+        $("#imgToExpand").attr("height", "500");
+        $("#imgToExpand").attr("width", "500");
+    });
+    if ($('#spanSuccesMessage').text().trim() != '') {
+        $("#divSuccesMessage").show();
+        $('#divSuccesMessage').delay(4000).fadeOut('slow');
+    }
+    if ($('#spanErrorMessage').text().trim() != '') {
+        $("#divErrorMessage").show();
+        $('#divErrorMessage').delay(4000).fadeOut('slow');
+    }
+
+    if ($("#wrapper").hasClass("toggled-2")) {
+        $("#sidebar-wrapper").hover(
+            function () {
+                //alert("hover in");
+            },
+            function () {
+                //alert("hover out");
+                $('#menu ul').hide();
+            }
+        );
+    }
+</script>
+
+
+

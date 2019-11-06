@@ -1,0 +1,237 @@
+/* Main container */
+.msb-switcher {
+    padding: 10px;
+    /*border: 3px solid #1D2127;*/
+}
+
+/* options/select wrapper with switch anchors */
+.msb-options {
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+    .msb-options a {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        color: #d0d0d0;
+        margin: 2px;
+    }
+
+        .msb-options a:hover,
+        .msb-options a.msb-selected {
+            color: #1D2127;
+        }
+
+        .msb-options a:before {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 30px;
+            text-align: center;
+            display: inline-block;
+        }
+
+/* General style of switch items' list */
+
+.msb-switcher ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+    /* Clear eventual floats */
+    .msb-switcher ul:before,
+    .msb-switcher ul:after {
+        content: " ";
+        display: table;
+    }
+
+    .msb-switcher ul:after {
+        clear: both;
+    }
+
+    .msb-switcher ul li {
+        display: block;
+        position: relative;
+    }
+
+.msb-image {
+    display: block;
+    margin: 0 auto;
+}
+
+    .msb-image img {
+        display: inline-block;
+        max-width: 100%;
+        border: none;
+    }
+
+.msb-title {
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 1.8em;
+    line-height: 1.8em;
+}
+
+.msb-subtitle {
+    color: #c0c0c0;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 1.8em;
+    line-height: 1.8em;
+}
+
+.msb-add {
+    color: #fff;
+    background: #1D2127;
+    padding: 3px 20px;
+    border-radius: 2px;
+    margin: 10px 0 0;
+    display: inline-block;
+    transition: background 0.2s;
+}
+
+    .msb-add:hover {
+        color: #fff;
+        background: #02639d;
+    }
+
+    .msb-add:before {
+        margin-right: 5px;
+    }
+
+/* Common icon styles */
+.msb-icon:before {
+    font-family: 'fontawesome';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Individual view mode styles */
+
+/* Large grid view */
+.msb-view-grid ul {
+    text-align: center;
+    border: 0;
+}
+
+    .msb-view-grid ul li {
+        width: 18%;
+        text-align: center;
+        padding: 15px;
+        margin: 10px 0 0;
+        display: inline-block;
+        /*min-height: 295px;*/
+        vertical-align: top;
+        border: 1px solid #ccc;
+    }
+
+.msb-view-grid .msb-title {
+    font-size: 1.5em;
+}
+
+.msb-view-grid .msb-details {
+    max-width: 300px;
+    /*min-height: 30px;*/
+    margin: 0 auto;
+}
+
+.msb-view-grid .msb-subtitle {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+
+/* List view */
+.msb-view-list li {
+    padding: 20px 3px;
+    white-space: nowrap;
+    border-bottom: 1px solid #ccc;
+}
+
+.msb-view-list .msb-image,
+.msb-view-list .msb-title,
+.msb-view-list .msb-details,
+.msb-view-list .msb-subtitle,
+.msb-view-list .msb-add {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.msb-view-list .msb-image {
+    width: 10%;
+}
+
+.msb-view-list .msb-title {
+    font-size: 1.3em;
+    padding: 0 10px;
+    white-space: normal;
+    width: 23%;
+}
+
+.msb-view-list .msb-subtitle {
+    font-size: 1em;
+    width: 10%;
+}
+
+.msb-view-list .msb-details {
+    width: 40%;
+    padding: 0 15px;
+    overflow: hidden;
+    white-space: normal;
+}
+
+.msb-view-list .msb-add {
+    margin: 0;
+}
+
+@media screen and (max-width: 66.7em) {
+    .msb-view-list .msb-details {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 57em) {
+    .msb-view-grid ul li {
+        width: 49%;
+    }
+}
+
+@media screen and (max-width: 47.375em) {
+    .msb-view-list .msb-image {
+        width: 20%;
+    }
+
+    .msb-view-list .msb-title {
+        width: auto;
+    }
+
+    .msb-view-list .msb-details {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .msb-view-list .msb-add {
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 40.125em) {
+    .msb-view-grid ul li {
+        width: 100%;
+    }
+}

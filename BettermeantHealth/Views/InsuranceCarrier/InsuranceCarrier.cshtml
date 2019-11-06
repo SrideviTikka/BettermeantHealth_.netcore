@@ -1,0 +1,157 @@
+﻿@{
+   Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="panel panel-default m-t-20" id="divAddUser">
+    <div class="panel-heading col-md-12">
+        <h3 class="panel-title col-md-10">InsuranceCarrier >> View </h3>
+        <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#addUsersModal" id="btnAddUser">Add InsuranceCarrier</button>
+    </div>
+    <div class="panel-body col-md-12" style="background-color:white">
+        <div id="divGrid"></div>
+    </div>
+</div>
+<div id="addUsersModal" class="modal fade in" role="dialog">
+    <div class="modal-dialog">
+        <form id="frmAddUsers" action="~/InsuranceCarrier/AddupdateInsuranceCarrier" method="post">
+            <input type="hidden" id="hdnInsuranceCarrierId" name="hdnInsuranceCarrierId" />
+            <!-- Modal content-->
+            <div class="modal-content" style="width: 100%; padding:0px;">
+                <div class="modal-header col-md-12">
+                    <button type="button" class="close" data-dismiss="modal" style="font-size: 25px;">&times;</button>
+                    <h4 class="modal-title" style="color: #4082bb">Add/Edit InsuranceCarrier </h4>
+                </div>
+                <div class="modal-body" style="padding: 0;">
+                    <div class="form-group col-md-12" style="padding-top: 20px;">
+                        <label class="control-label  col-sm-4" style="padding-top: 6px;">InsuranceCarrier Name:</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="txtInsuranceName" id="txtInsuranceName" class="form-control" placeholder="Enter InsuranceCarrier Name" pattern="[a-zA-Z0-9]+" required data-required-msg="Please enter InsuranceName" validationmessage="Please enter valid input " style="width: 300px" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <input type="submit" name="btnSave" id="btnSave" value="Save" class="btn btn-info btn-sm-10  btn-color" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#btnAddUser").click(function () {
+        $("#txtInsuranceName").val("");
+    });
+
+    $("#frmAddUsers").kendoValidator().data("kendoValidator");
+     function Get_InsuranceCarrier(InsuranceCarrierId) {
+        var result = null;
+        $.ajax({
+          type: "GET",
+          async: false,
+          url: '@Url.Action("Get_InsuranceCarrier", "InsuranceCarrier")',
+            data: { InsuranceCarrierId: InsuranceCarrierId },
+          success: function (data) {
+              result = data;
+            }
+        });
+        return result;
+    }
+     function EditInsuranceCarrier(InsuranceCarrierId) {
+        debugger;
+        var result = null;
+        $.ajax({
+            url: '@Url.Action("Get_InsuranceCarrier", "InsuranceCarrier")',
+            data: { InsuranceCarrierId: InsuranceCarrierId },
+            async: false,
+            traditional: true,
+            success: function (data) {
+                if (data != null) {
+                    $('#addUsersModal').modal('toggle');
+                    $("#hdnInsuranceCarrierId").val(data[0].InsuranceCarrierId)
+                    $("#txtInsuranceName").val(data[0].InsuranceName)
+                }
+            }
+        });
+    }
+    function DeleteInsuranceCarrier(InsuranceCarrierId) {
+        debugger;
+        if (InsuranceCarrierId != '') {
+            if (confirm(" Are you Sure  want to Delete?")) {
+                var url = "/InsuranceCarrier/DeleteInsuranceCarrier?InsuranceCarrierId=" + InsuranceCarrierId;
+                $.post(url, function (strMessage) {
+                    var gridins = Get_InsuranceCarrier(0);
+                    $("#divGrid").data("kendoGrid").dataSource.data(gridins);
+                    if (strMessage.trim() != "") {
+                        if (strMessage.toLowerCase().indexOf("success") != -1) {
+                            $('#spanSuccesMessage').text(strMessage);
+                            $("#divSuccesMessage").show();
+                            $('#divSuccesMessage').delay(3000).fadeOut('slow', function () { $('#spanSuccesMessage').text(""); });
+                        }
+                        else if (strMessage.toLowerCase().indexOf("unable") != -1) {
+                            $('#spanErrorMessage').text(strMessage);
+                            $("#divErrorMessage").show();
+                            $('#divErrorMessage').delay(3000).fadeOut('slow', function () { $('#spanErrorMessage').text(""); });
+                        }
+                    }
+                    else {
+                        $('#spanErrorMessage').text('Unable to delete, Please try after sometime');
+                        $("#divErrorMessage").show();
+                        $('#divErrorMessage').delay(3000).fadeOut('slow', function () { $('#spanErrorMessage').text(""); });
+                    }
+                })
+            }
+        }
+    }
+ $('#divGrid').kendoGrid({
+        dataSource: {
+            data: Get_InsuranceCarrier(0),
+            serverPaging: false,
+            serverFiltering: false,
+            serverSorting: false
+        },
+        sortable: true,
+        scrollable: false,
+        pageable: {
+            pageSize: 10,
+            refresh: false,
+            pageSizes: true,
+            buttonCount: 5
+        },
+        filterable: true,
+        columns:
+            [
+                {
+                    field: "InsuranceCarrierId",
+                    hidden: true
+                },
+                {
+                    field: "InsuranceName",
+                    title: "InsuranceCarrier Name",
+                    width: 100
+                },
+
+                {
+                    field: "CreatedDate",
+                    title: "Created Date",
+                    template: "#= kendo.toString(kendo.parseDate(CreatedDate,'yyyy-MM-dd'),'dd-MM-yyyy')#",
+                    width: 100
+                },
+
+
+                  {
+                    template: "<div style='position: relative;left: 9px;'><a onclick='EditInsuranceCarrier(#=InsuranceCarrierId#)'><i class='glyphicon glyphicon-pencil' aria-hidden='true'></i></a></div>",
+                    title: "Edit",
+                    width: 40
+                },
+                {
+                    template: "<div style='position: relative;left: 9px;'><a onClick='DeleteInsuranceCarrier(#=InsuranceCarrierId#)'><i class='fa fa-trash' aria-hidden='true'></i></a></div>",
+                  title: "Delete",
+                  width: 40
+                }
+            ]
+    });
+
+</script>

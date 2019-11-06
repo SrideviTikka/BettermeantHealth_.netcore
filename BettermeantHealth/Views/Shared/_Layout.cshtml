@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BettermeantHealth</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/styles/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.common-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/Kendo/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/themes/base/jquery-ui.css" rel="stylesheet" />
+    @*<link href="~/lib/fontawesome-free-5.11.2-web/css/all.css" rel="stylesheet" />*@
+    @*<link href="~/lib/fontawesome-free-5.11.2-web/css/fontawesome.css" rel="stylesheet" />*@
+    <link href="~/lib/Rat/css/animate.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/components.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/helper.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/icons.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/rat.css" rel="stylesheet" />
+    <link href="~/lib/Rat/css/switcher.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-tagsinput.css" rel="stylesheet" />
+
+</head>
+<body>
+    @*<header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BettermeantHealth</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>*@
+    
+    <div class="container">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script> 
+        <script src="~/lib/jquery/dist/jquery-migrate-1.2.1.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="~/lib/project/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/Kendo/js/kendo.all.min.js"></script>
+        <script src="~/lib/Kendo/js/jszip.min.js"></script>
+        <script src="~/lib/Rat/js/FileSaver.js"></script>
+        <script src="~/lib/Rat/js/Html2Canvas.js"></script>
+        <script src="~/lib/Rat/js/jquery.wordexport.js"></script>
+        <script src="~/lib/Rat/js/Rat.js"></script>
+        <script src="~/lib/fontawesome-free-5.11.2-web/js/all.js"></script>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+ 
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
